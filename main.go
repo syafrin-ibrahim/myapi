@@ -21,13 +21,13 @@ func main() {
 	bookRepository := book.NewRepository(db)
 	bookService := book.NewService(bookRepository)
 	bookHandler := handler.NewBookHandler(bookService)
-	bookInput := book.BookInput{
-		Title:       "aman",
-		Description: "masih saja",
-		Price:       3400,
-	}
+	// bookInput := book.BookInput{
+	// 	Title:       "aman",
+	// 	Description: "masih saja",
+	// 	Price:       3400,
+	// }
 
-	bookService.Create(bookInput)
+	// bookService.Create(bookInput)
 
 	// db.AutoMigrate(&book.Book{})
 
@@ -93,10 +93,13 @@ func main() {
 	// v1.GET("/books/:id", booksHandler)
 	// v1.GET("/books", queryHandler)
 	// v1.POST("/books", createBookHandler)
-	router.GET("/", bookHandler.RootHandler)
-	router.GET("/hello", bookHandler.HelloHandler)
-	router.GET("/books/:id", bookHandler.BooksHandler)
-	router.GET("/books", bookHandler.QueryHandler)
+	// router.GET("/", bookHandler.RootHandler)
+	// router.GET("/hello", bookHandler.HelloHandler)
+	// router.GET("/books/:id", bookHandler.BooksHandler)
+	// router.GET("/books", bookHandler.QueryHandler)
+
 	router.POST("/books", bookHandler.CreateBookHandler)
+	router.GET("/books", bookHandler.GetBooks)
+	router.GET("/book/:id", bookHandler.GetSingleBook)
 	router.Run()
 }

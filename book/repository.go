@@ -25,7 +25,7 @@ func (r *repository) FindAll() ([]Book, error) {
 
 func (r *repository) FindById(ID int) (Book, error) {
 	var book Book
-	err := r.db.Find(&book, ID).Error
+	err := r.db.Where("id = ?", ID).First(&book).Error
 
 	return book, err
 }
